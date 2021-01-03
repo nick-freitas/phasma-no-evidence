@@ -48,8 +48,7 @@ export const GHOSTS = [
   },
   {
     name: 'Mare',
-    description:
-      "Turns off lights/breakers but usually doesn't turn them back on.",
+    description: `Turns off lights/breakers but usually doesn't turn them back on.`,
     requiresFreezingTemp: true,
   },
   {
