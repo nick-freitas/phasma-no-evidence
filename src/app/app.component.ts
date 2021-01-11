@@ -111,7 +111,7 @@ import { TESTS } from './tests.data';
         <div class="card-body">
           <h5 class="card-title">Possible Ghosts</h5>
           <span class="card-text">
-            <ul class="list-group list-group-flush">
+            <ul class="list-group list-group-flush" *ngIf="this.ghosts?.length">
               <li class="list-group-item" *ngFor="let ghost of this.ghosts">
                 <div class="d-flex w-100 justify-content-between">
                   <h5 class="mb-1">{{ ghost.name }}</h5>
@@ -188,6 +188,7 @@ export class AppComponent {
   }
 
   confirmPass(testName: string, passed?: boolean): void {
+    console.log('testing');
     this.tests = this.tests.map((test) => {
       if (test.name === testName) {
         test.passed = passed;

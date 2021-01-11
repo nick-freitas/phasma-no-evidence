@@ -2,7 +2,8 @@ export const TESTS = [
   // Non-Freezing
   {
     name: 'Poltergeist Test',
-    description: 'When items are thrown in front of player, that players sainty drops 2 times the amount of items thrown percent.',
+    description:
+      'When items are thrown in front of player, that players sainty drops 2 times the amount of items thrown percent.',
     positiveTestFor: 'Poltergeist',
   },
 
@@ -26,7 +27,8 @@ export const TESTS = [
 
   {
     name: 'Shade Test',
-    description: 'Most activity will only happen when there is only one player in the ghost room. If there are two or more people in the ghost room, it will not initiate a Hunt.',
+    description:
+      'Most activity will only happen when there is only one player in the ghost room. If there are two or more people in the ghost room, it will not initiate a Hunt.',
     positiveTestFor: 'Shade',
   },
 
@@ -47,12 +49,11 @@ export const TESTS = [
   },
 
   {
-    name: 'Yurie Test',
+    name: 'Yurei Test',
     description: `Using Smudge Sticks on the Yurei will cause it to not wander around the location for 90 seconds.`,
-    positiveTestFor: 'Yurie',
+    positiveTestFor: 'Yurei',
     freezingTempTest: true,
   },
-
 
   {
     name: 'Mare Test',
@@ -76,5 +77,4 @@ export const TESTS = [
     positiveTestFor: 'Demon',
     freezingTempTest: true,
   },
-
 ];
