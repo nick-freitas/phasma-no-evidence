@@ -1,149 +1,12 @@
 import { Component } from '@angular/core';
+import { timer } from 'rxjs';
+import { __spread } from 'tslib';
 import { GHOSTS } from './ghosts.data';
 import { TESTS } from './tests.data';
 
 @Component({
   selector: 'app-root',
-  template: `
-    <app-nav-bar></app-nav-bar>
-    <div class="container">
-      <div class="card freezing-temps">
-        <div class="card-body">
-          <h5 class="card-title">Freezing Temps</h5>
-          <p class="card-text">
-            There are 6 ghosts that show Freezing Temps and 6 ghosts that do not
-            show Freezing Temps. On a No Evidence run, this can be accomplished
-            by seeing or not seeing your breath in the ghost's room.
-          </p>
-          <button
-            class="btn"
-            [ngClass]="{
-              'btn-primary': this.freezingTemps === true,
-              'btn-secondary': this.freezingTemps !== true
-            }"
-            (click)="this.confirmFreezingTemp(true)"
-          >
-            Yes
-          </button>
-
-          <button
-            class="btn"
-            [ngClass]="{
-              'btn-primary': this.freezingTemps === false,
-              'btn-secondary': this.freezingTemps !== false
-            }"
-            (click)="this.confirmFreezingTemp(false)"
-          >
-            No
-          </button>
-
-          <button
-            class="btn"
-            [ngClass]="{
-              'btn-primary': this.freezingTemps === undefined,
-              'btn-secondary': this.freezingTemps !== undefined
-            }"
-            (click)="this.confirmFreezingTemp()"
-          >
-            Unknown
-          </button>
-          <span class="reset-warning" *ngIf="this.freezingTemps !== undefined"
-            >Warning: Changing the selection here will reset the Test selections
-            below</span
-          >
-        </div>
-      </div>
-
-      <div
-        class="card"
-        *ngIf="this.freezingTemps === undefined; else testBlock"
-      >
-        <div class="card-body">
-          In order to display tests you must first determine if there are
-          freezing temps in the ghost rooms.
-        </div>
-      </div>
-
-      <ng-template #testBlock>
-        <div class="card test" *ngFor="let test of tests">
-          <div class="card-body" *ngIf="test">
-            <h5 class="card-title">{{ test.name }}</h5>
-            <p class="card-text">
-              {{ test.description }}
-            </p>
-            <button
-              class="btn"
-              [ngClass]="{
-                'btn-primary': test.passed === true,
-                'btn-secondary': test.passed !== true
-              }"
-              (click)="this.confirmPass(test.name, true)"
-            >
-              Pass
-            </button>
-
-            <button
-              class="btn"
-              [ngClass]="{
-                'btn-primary': test.passed === false,
-                'btn-secondary': test.passed !== false
-              }"
-              (click)="this.confirmPass(test.name, false)"
-            >
-              Fail
-            </button>
-
-            <button
-              class="btn"
-              [ngClass]="{
-                'btn-primary': test.passed === undefined,
-                'btn-secondary': test.passed !== undefined
-              }"
-              (click)="this.confirmPass(test.name)"
-            >
-              Untested
-            </button>
-          </div>
-        </div>
-      </ng-template>
-
-      <div class="card possible-ghosts" *ngIf="!duplicateTestResults">
-        <div class="card-body">
-          <h5 class="card-title">Possible Ghosts</h5>
-          <span class="card-text">
-            <ul class="list-group list-group-flush" *ngIf="this.ghosts?.length">
-              <li class="list-group-item" *ngFor="let ghost of this.ghosts">
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">{{ ghost.name }}</h5>
-                  <small *ngIf="ghost.positiveTests?.length">Testable</small>
-                </div>
-                <p class="mb-1">
-                  {{ ghost.description }}
-                </p>
-                <small *ngIf="ghost.requiresFreezingTemp">Freezing Temps</small>
-                <small *ngIf="!ghost.requiresFreezingTemp"
-                  >No Freezing Temps</small
-                >
-              </li>
-            </ul>
-          </span>
-        </div>
-      </div>
-
-      <div
-        class="alert alert-danger d-flex flex-column"
-        role="alert"
-        *ngIf="duplicateTestResults"
-      >
-        <span>You have more then 1 passed test, that is not possible!</span>
-        <button class="btn btn-danger" (click)="this.resetEverything()">
-          Click here to reset everything and try again.
-        </button>
-      </div>
-
-      <!-- <app-footer></app-footer> -->
-    </div>
-  `,
+  templateUrl: './app.component.html',
   styles: [
     `
       .card,
@@ -169,11 +32,15 @@ export class AppComponent {
   ghosts: any[];
   tests: any[];
   duplicateTestResults: boolean;
+  timerOn?: boolean;
+  counter: any;
+
 
   constructor() {
     this.ghosts = [...GHOSTS];
     this.tests = [...TESTS];
     this.duplicateTestResults = false;
+    this.stopwatch();
   }
 
   confirmFreezingTemp(confirm?: boolean): void {
@@ -264,4 +131,20 @@ export class AppComponent {
 
     console.log('reset');
   }
+
+  //Stopwatch
+
+  stopwatch(): void {
+    // creates a second timer
+    let seconds$ = timer(0, 1000);
+    if (this.timerOn === true) {
+      seconds$.subscribe(x => { this.counter = x });
+    } else {
+      //PAUSE
+    }
+    this.timerOn = !this.timerOn;
+
+  }
+
+
 }
