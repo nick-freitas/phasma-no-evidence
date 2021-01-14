@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { timer } from 'rxjs';
 import { __spread } from 'tslib';
 import { GHOSTS } from './ghosts.data';
@@ -24,6 +24,10 @@ import { TESTS } from './tests.data';
         font-style: italic;
         color: red;
       }
+
+      #counterSize {
+        font-size: 3.2rem;
+      }
     `,
   ],
 })
@@ -32,15 +36,18 @@ export class AppComponent {
   ghosts: any[];
   tests: any[];
   duplicateTestResults: boolean;
-  timerOn?: boolean;
+  // timerOn?: boolean;
+  // counter: any;
   counter: any;
-
+  timerRef: any;
+  running: boolean = false;
+  startText = 'Start';
 
   constructor() {
     this.ghosts = [...GHOSTS];
     this.tests = [...TESTS];
     this.duplicateTestResults = false;
-    this.stopwatch();
+    this.counter = 0;
   }
 
   confirmFreezingTemp(confirm?: boolean): void {
@@ -134,17 +141,29 @@ export class AppComponent {
 
   //Stopwatch
 
-  stopwatch(): void {
-    // creates a second timer
-    let seconds$ = timer(0, 1000);
-    if (this.timerOn === true) {
-      seconds$.subscribe(x => { this.counter = x });
+  startTimer() {
+    this.running = !this.running;
+    if (this.running) {
+      this.startText = 'Stop';
+      const startTime = Date.now() - (this.counter || 0);
+      clearInterval(this.timerRef);
+      this.timerRef = setInterval(() => {
+        this.counter = Math.floor((Date.now() - startTime) / 1000);
+      });
     } else {
-      //PAUSE
+      this.startText = 'Start';
+      clearInterval(this.timerRef);
     }
-    this.timerOn = !this.timerOn;
-
   }
 
+  clearTimer() {
+    this.running = false;
+    this.startText = 'Start';
+    this.counter = 0;
+    clearInterval(this.timerRef);
+  }
 
+  ngOnDestroy() {
+    clearInterval(this.timerRef);
+  }
 }
