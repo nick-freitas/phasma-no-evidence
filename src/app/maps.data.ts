@@ -4,7 +4,16 @@ enum MAP_SIZES {
   LARGE,
 }
 
-export const MAPS = [
+export interface Map {
+  name: string;
+  size: MAP_SIZES;
+  setupDropRate?: number;
+  normalDropRate?: number;
+  soloSetupDropRate?: number;
+  soloNormalDropRate?: number;
+}
+
+export const MAPS: Map[] = [
   {
     name: 'Tanglewood Street House',
     size: MAP_SIZES.SMALL,
@@ -54,8 +63,8 @@ export const MAPS = [
       break;
   }
 
-  map.SoloSetupDropRate = map.setupDropRate / 2.0;
-  map.SoloNormalDropRate = map.normalDropRate / 2.0;
+  map.soloSetupDropRate = map.setupDropRate / 2.0;
+  map.soloNormalDropRate = map.normalDropRate / 2.0;
 
   return map;
 });

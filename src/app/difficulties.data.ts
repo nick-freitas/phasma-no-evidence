@@ -1,4 +1,9 @@
-export const DIFFICULTIES = [
+export interface Difficulty {
+  name: string;
+  dropRate: number;
+}
+
+export const DIFFICULTIES: Difficulty[] = [
   {
     name: 'Amateur',
     dropRate: 1.0,

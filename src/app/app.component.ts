@@ -1,7 +1,12 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnDestroy } from '@angular/core';
-import { timer } from 'rxjs';
+import { FormControl } from '@angular/forms';
+import { Observable, Subscription, timer } from 'rxjs';
 import { __spread } from 'tslib';
+import { DIFFICULTIES, Difficulty } from './difficulties.data';
 import { GHOSTS } from './ghosts.data';
+import { Map, MAPS } from './maps.data';
+import { SanityService } from './sanity.service';
 import { TESTS } from './tests.data';
 
 @Component({
@@ -40,12 +45,46 @@ export class AppComponent {
   timerRef: any;
   running: boolean = false;
   startText = 'Start';
+  maps: Map[];
+  map: Map;
+  difficulties: Difficulty[];
+  difficulty: Difficulty;
+  resetValue: FormControl;
+  inDarkness: FormControl;
+  subscriptions: Subscription[];
 
-  constructor() {
+  constructor(public sanityService: SanityService) {
     this.ghosts = [...GHOSTS];
     this.tests = [...TESTS];
     this.duplicateTestResults = false;
     this.counter = 0;
+    this.maps = MAPS;
+    this.map = this.maps[0];
+    this.difficulties = DIFFICULTIES;
+    this.difficulty = this.difficulties[0];
+    this.resetValue = new FormControl();
+    this.inDarkness = new FormControl();
+
+    this.subscriptions = [];
+    this.subscriptions.push(
+      this.inDarkness.valueChanges.subscribe((value) => {
+        this.sanityService.setDarkness(value);
+      })
+    );
+  }
+
+  selectMap(map: Map): void {
+    this.map = map;
+    this.sanityService.setMap(this.map);
+  }
+
+  selectDifficulty(difficulty: Difficulty): void {
+    this.difficulty = difficulty;
+    this.sanityService.setDifficulty(this.difficulty);
+  }
+
+  resetSanity() {
+    this.sanityService.resetSanity(this.resetValue.value);
   }
 
   confirmFreezingTemp(confirm?: boolean): void {
@@ -167,5 +206,6 @@ export class AppComponent {
 
   ngOnDestroy() {
     clearInterval(this.timerRef);
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 }

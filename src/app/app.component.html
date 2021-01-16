@@ -25,7 +25,104 @@
         </button>
       </section>
     </div>
-    <div class="card freezing-temps">
+    <div class="card-body col-md-4">
+      <div class="sanity-block d-flex flex-row">
+        <div class="">
+          <h5 class="card-title">Sanity Range</h5>
+          <div
+            *ngIf="this.sanityService.sanity$ | async as sanity"
+            class="d-flex flex-row"
+          >
+            <h3 class="">{{ sanity.low | number: "0.0-0" }}</h3>
+            <h3>-</h3>
+            <h3>{{ sanity.high | number: "0.0-0" }}</h3>
+          </div>
+        </div>
+        <div class="ml-3 col-md-6">
+          <h5 class="card-title">Reset Sanity</h5>
+          <div class="d-flex flex-row">
+            <input
+              type="number"
+              class="form-control"
+              id="exampleDropdownFormEmail1"
+              [formControl]="resetValue"
+              placeholder=""
+            />
+            <button class="btn btn-primary" (click)="resetSanity()">
+              Reset
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="mt-4">
+        <h5 class="card-title">Map</h5>
+        <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {{ this.map.name }}
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li>
+              <a
+                class="dropdown-item"
+                (click)="selectMap(map)"
+                *ngFor="let map of this.maps"
+              >
+                {{ map.name }}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-4 d-flex flex-row">
+        <div class="diff">
+          <h5 class="card-title">Difficulty</h5>
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {{ this.difficulty.name }}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li>
+                <a
+                  class="dropdown-item"
+                  (click)="selectDifficulty(difficulty)"
+                  *ngFor="let difficulty of this.difficulties"
+                >
+                  {{ difficulty.name }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="darkness col-md-6 d-flex flex-column align-items-end">
+          <h5 class="card-title">Darkness</h5>
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="flexSwitchCheckChecked"
+              [formControl]="inDarkness"
+              checked
+            />
+            <!-- <label class="form-check-label" for="flexSwitchCheckChecked">
+              In Darkness
+            </label> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="freezing-temps col-md-5">
       <div class="card-body">
         <h5 class="card-title">Freezing Temps</h5>
         <p class="card-text">
