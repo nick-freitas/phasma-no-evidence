@@ -1,10 +1,10 @@
 <app-nav-bar></app-nav-bar>
 <div class="container">
   <div class="card d-flex flex-row-reverse">
-    <div class="card-body">
+    <div class="card-body col-md-3">
       <h5 class="card-title">Timer</h5>
       <section class="stopwatch-label">
-        <div id="counterSize">{{ counter }}</div>
+        <div id="counterSize">{{ counter | msToSec }}</div>
       </section>
       <section class="timer-btn-container d-flex flex-row">
         <button
@@ -13,7 +13,7 @@
             'btn-primary': this.running,
             'btn-secondary': !this.running
           }"
-          (click)="startTimer()"
+          (click)="startResumeTimer()"
         >
           {{ startText }}
         </button>

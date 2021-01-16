@@ -36,9 +36,7 @@ export class AppComponent {
   ghosts: any[];
   tests: any[];
   duplicateTestResults: boolean;
-  // timerOn?: boolean;
-  // counter: any;
-  counter: any;
+  counter: number;
   timerRef: any;
   running: boolean = false;
   startText = 'Start';
@@ -141,17 +139,21 @@ export class AppComponent {
 
   //Stopwatch
 
-  startTimer() {
+  startResumeTimer() {
     this.running = !this.running;
+    //IF the counter is running startTime will be the number that the timer
+    //starts with when you pause and resume, this.counter is the current time
+    //that is displayed on the web browser
     if (this.running) {
       this.startText = 'Stop';
       const startTime = Date.now() - (this.counter || 0);
       clearInterval(this.timerRef);
       this.timerRef = setInterval(() => {
-        this.counter = Math.floor((Date.now() - startTime) / 1000);
+        // this.counter = Math.floor((Date.now() - startTime) / 1000);
+        this.counter = Date.now() - startTime;
       });
     } else {
-      this.startText = 'Start';
+      this.startText = 'Resume';
       clearInterval(this.timerRef);
     }
   }
