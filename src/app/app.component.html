@@ -2,28 +2,39 @@
 <div class="container">
   <div class="card d-flex flex-row-reverse">
     <div class="card-body col-md-3">
-      <h5 class="card-title">Timer</h5>
-      <section class="stopwatch-label">
+      <h5 class="card-title d-flex justify-content-center">Timer</h5>
+      <section class="stopwatch-label d-flex justify-content-center">
         <div id="counterSize">{{ counter | msToSec }}</div>
       </section>
-      <section class="timer-btn-container d-flex flex-row">
+      <section
+        class="timer-btn-container d-flex flex-row justify-content-center"
+      >
         <button
           class="btn timer-btn d-flex justify-content-start"
           [ngClass]="{
-            'btn-primary': this.running,
-            'btn-secondary': !this.running
+            'btn-danger': this.running,
+            'btn-success': !this.running
           }"
           (click)="startResumeTimer()"
         >
-          {{ startText }}
+          {{ startStopText }}
         </button>
         <button
-          class="btn timer-btn btn-danger d-flex justify-content-end"
-          (click)="clearTimer()"
+          class="btn timer-btn btn-secondary d-flex justify-content-end"
+          (click)="clearLapTimer()"
         >
-          Clear
+          {{ clearLapText }}
         </button>
       </section>
+      <div *ngFor="let lap of this.lapTime">
+        {{ lap | msToSec }}
+      </div>
+      <div
+        class="d-flex justify-content-center"
+        *ngIf="this.lapTime.length == 2"
+      >
+        {{ lapDelta | msToSec }}
+      </div>
     </div>
     <div class="card-body col-md-4">
       <div class="sanity-block d-flex flex-row">
@@ -33,9 +44,9 @@
             *ngIf="this.sanityService.sanity$ | async as sanity"
             class="d-flex flex-row"
           >
-            <h3 class="">{{ sanity.low | number: "0.0-0" }}</h3>
+            <h3 class="">{{ sanity.high | number: "0.0-1" }}</h3>
             <h3>-</h3>
-            <h3>{{ sanity.high | number: "0.0-0" }}</h3>
+            <h3>{{ sanity.low | number: "0.0-1" }}</h3>
           </div>
         </div>
         <div class="ml-3 col-md-6">
@@ -43,10 +54,10 @@
           <div class="d-flex flex-row">
             <input
               type="number"
-              class="form-control"
-              id="exampleDropdownFormEmail1"
+              class=""
+              id="resetSanityTextBox"
               [formControl]="resetValue"
-              placeholder=""
+              placeholder="Lowest sanity in range"
             />
             <button class="btn btn-primary" (click)="resetSanity()">
               Reset
@@ -106,7 +117,7 @@
           </div>
         </div>
         <div class="darkness col-md-6 d-flex flex-column align-items-end">
-          <h5 class="card-title">Darkness</h5>
+          <h5 class="card-title">In darkness?</h5>
           <div class="form-check form-switch">
             <input
               class="form-check-input"

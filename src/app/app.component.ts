@@ -44,7 +44,8 @@ export class AppComponent {
   counter: number;
   timerRef: any;
   running: boolean = false;
-  startText = 'Start';
+  startStopText = 'Start';
+  clearLapText = 'Clear';
   maps: Map[];
   map: Map;
   difficulties: Difficulty[];
@@ -52,6 +53,8 @@ export class AppComponent {
   resetValue: FormControl;
   inDarkness: FormControl;
   subscriptions: Subscription[];
+  lapTime: number[];
+  lapDelta: number;
 
   constructor(public sanityService: SanityService) {
     this.ghosts = [...GHOSTS];
@@ -64,6 +67,8 @@ export class AppComponent {
     this.difficulty = this.difficulties[0];
     this.resetValue = new FormControl();
     this.inDarkness = new FormControl();
+    this.lapTime = [];
+    this.lapDelta = 0;
 
     this.subscriptions = [];
     this.subscriptions.push(
@@ -184,24 +189,40 @@ export class AppComponent {
     //starts with when you pause and resume, this.counter is the current time
     //that is displayed on the web browser
     if (this.running) {
-      this.startText = 'Stop';
+      this.startStopText = 'Stop';
+      this.clearLapText = 'Lap';
       const startTime = Date.now() - (this.counter || 0);
       clearInterval(this.timerRef);
       this.timerRef = setInterval(() => {
-        // this.counter = Math.floor((Date.now() - startTime) / 1000);
         this.counter = Date.now() - startTime;
       });
     } else {
-      this.startText = 'Resume';
+      this.startStopText = 'Resume';
+      this.clearLapText = 'Clear';
       clearInterval(this.timerRef);
     }
   }
 
-  clearTimer() {
-    this.running = false;
-    this.startText = 'Start';
-    this.counter = 0;
-    clearInterval(this.timerRef);
+  clearLapTimer() {
+    if (this.running) {
+      this.lapTime.push(this.counter);
+      if (this.lapTime.length < 2) {
+        this.lapDelta = 0;
+      } else {
+        this.lapDelta = this.lapTime[1] - this.lapTime[0];
+      }
+      if (this.lapTime.length > 2) {
+        this.lapTime.shift();
+        this.lapDelta = this.lapTime[1] - this.lapTime[0];
+      }
+    } else {
+      this.running = false;
+      this.startStopText = 'Start';
+      this.counter = 0;
+      this.lapTime = [];
+      this.lapDelta = 0;
+      clearInterval(this.timerRef);
+    }
   }
 
   ngOnDestroy() {
