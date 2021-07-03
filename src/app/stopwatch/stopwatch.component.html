@@ -1,0 +1,34 @@
+<h5 class="d-flex justify-content-center">Timer</h5>
+<section class="stopwatch-label d-flex justify-content-center">
+  <div id="counterSize">{{ counter | msToSec }}</div>
+</section>
+<section class="timer-btn-container d-flex flex-row justify-content-center row">
+  <button
+    class="btn timer-btn d-flex justify-content-center col-md-6"
+    [ngClass]="{
+      'btn-danger': this.running,
+      'btn-success': !this.running
+    }"
+    (click)="startResumeTimer()"
+  >
+    {{ this.running ? "Stop" : "Start" }}
+  </button>
+  <button
+    class="btn timer-btn btn-secondary d-flex justify-content-center col-md-6"
+    (click)="this.running ? this.lapTime() : this.clearTime()"
+  >
+    {{ this.running ? "Lap" : "Clear" }}
+  </button>
+</section>
+<section class="laptimes d-flex justify-content-center flex-column">
+  <span *ngIf="this.lapDelta"> Delta: {{ lapDelta | msToSec }} </span>
+  <span *ngFor="let lap of this.lapTimes | slice: 0:5">
+    {{ lap | msToSec }}
+  </span>
+  <span *ngIf="this.lapTimes.length === 6" class="font-italic">
+    (1 time is hidden)
+  </span>
+  <span *ngIf="this.lapTimes.length > 6" class="font-italic">
+    ({{ this.lapTimes.length - 5 }} times are hidden)
+  </span>
+</section>

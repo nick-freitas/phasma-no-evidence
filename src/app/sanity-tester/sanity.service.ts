@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subscription, timer } from 'rxjs';
-import { DIFFICULTIES, Difficulty } from './difficulties.data';
-import { Map, MAPS } from './maps.data';
+import { DIFFICULTIES, Difficulty } from '../data/difficulties.data';
+import { Map, MAPS } from '../data/maps.data';
 
 export interface SanityRange {
   low: number;

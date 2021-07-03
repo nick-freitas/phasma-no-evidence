@@ -1,0 +1,144 @@
+<div class="accordion">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button
+        class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseSanityTest"
+        aria-expanded="true"
+        aria-controls="collapseSanityTest"
+      >
+        Sanity Tester (beta)
+      </button>
+    </h2>
+    <div
+      id="collapseSanityTest"
+      class="accordion-collapse collapse show"
+      aria-labelledby="headingOne"
+      data-bs-parent="#accordionExample"
+    >
+      <div class="accordion-body">
+        <h6 class="card-subtitle mb-2 text-muted">
+          Tracks the standard amount of sanity you should lose for that specific
+          Map and Difficutly. If you witness ghost activities and your final
+          truck sanity is under this range, this is an indicator that you are
+          looking at a Phantom or Yurei.
+        </h6>
+
+        <div class="d-flex row">
+          <div class="col-md-10">
+            <div class="d-flex flex-column">
+              <div>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="inDarknessCheckbox"
+                  [formControl]="inDarkness"
+                  checked
+                />
+
+                <label class="form-check-label px-2" for="inDarknessCheckbox">
+                  In Darkness
+                </label>
+                <span class="font-italic px-4">
+                  (Sanity will count down while you are in darkness)
+                </span>
+              </div>
+              <div class="sanity-block d-flex flex-column my-4">
+                <div class="">
+                  <h5 class="card-title">Sanity Range</h5>
+                  <div
+                    *ngIf="this.sanityService.sanity$ | async as sanity"
+                    class="d-flex flex-row"
+                  >
+                    <h3 class="">{{ sanity.high | number: "0.0-1" }}</h3>
+                    <h3>-</h3>
+                    <h3>{{ sanity.low | number: "0.0-1" }}</h3>
+                  </div>
+                </div>
+                <div class="">
+                  <h5 class="card-title">Reset Sanity</h5>
+                  <div class="d-flex flex-row">
+                    <input
+                      type="number"
+                      class=""
+                      id="resetSanityTextBox"
+                      [formControl]="resetValue"
+                      placeholder="Lowest sanity in range"
+                    />
+                    <button class="btn btn-primary" (click)="resetSanity()">
+                      Reset
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4 d-flex">
+                <div class="map">
+                  <h5 class="card-title">Map</h5>
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-secondary dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      {{ this.map.name }}
+                    </button>
+                    <ul
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                    >
+                      <li>
+                        <a
+                          class="dropdown-item"
+                          (click)="selectMap(map)"
+                          *ngFor="let map of this.maps"
+                        >
+                          {{ map.name }}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="diff mx-4">
+                  <h5 class="card-title">Difficulty</h5>
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-secondary dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      {{ this.difficulty.name }}
+                    </button>
+                    <ul
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                    >
+                      <li>
+                        <a
+                          class="dropdown-item"
+                          (click)="selectDifficulty(difficulty)"
+                          *ngFor="let difficulty of this.difficulties"
+                        >
+                          {{ difficulty.name }}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4 d-flex flex-row"></div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <app-stopwatch></app-stopwatch>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

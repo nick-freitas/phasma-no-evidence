@@ -1,20 +1,18 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'app-footer',
+  selector: 'app-nav-bar',
   template: `
-    <nav class="navbar fixed-bottom navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand">
-          Calculations assume you have vsync on at 60fps.
-        </a>
+        <a class="navbar-brand" href="#">Phasma No-Evidence</a>
       </div>
     </nav>
   `,
   styles: [``],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FooterComponent implements OnInit {
+export class NavBarComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}

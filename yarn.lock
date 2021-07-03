@@ -224,10 +224,10 @@
   dependencies:
     tslib "^2.0.0"
 
-"@angular/platform-browser@~11.0.5":
-  version "11.0.5"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-11.0.5.tgz#b695d2533491f85721612a41d6d3708791bca96c"
-  integrity sha512-173JZHF3QS78hEscBxFZ/kX8KLjdaDhfAYi4Sh8daIKNUcDcyhqEy7wpAjWmCwdspL1QUtWKCrhZqrEVNGTpvA==
+"@angular/platform-browser@^11.0.6":
+  version "11.2.14"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-11.2.14.tgz#e52ad7a54a42a865033a17e57e213013919f1b1d"
+  integrity sha512-fb7b7ss/gRoP8wLAN17W62leMgjynuyjEPU2eUoAAazsG9f2cgM+z3rK29GYncDVyYQxZUZYnjSqvL6GSXx86A==
   dependencies:
     tslib "^2.0.0"
 
@@ -235,6 +235,13 @@
   version "11.0.5"
   resolved "https://registry.yarnpkg.com/@angular/router/-/router-11.0.5.tgz#95d47b3b510f6a49597db64cfd7ef936bb24c402"
   integrity sha512-mSD4tbzuFH4uBb9vxPQHBUbkIMoWAfVUb7r9gtn3/deOxQbVh08f2gk2iWDN3OQLAa5mNHswuLByAYSw2rPbMA==
+  dependencies:
+    tslib "^2.0.0"
+
+"@angular/service-worker@~11.0.5":
+  version "11.0.9"
+  resolved "https://registry.yarnpkg.com/@angular/service-worker/-/service-worker-11.0.9.tgz#63b243ae2237c37d3b046af96bc3b7addf46c640"
+  integrity sha512-GcEPvKi8DQEWerDZBk6DzuBoqdc0zx+xCYYtWavjKp3jPGxuHdSnIAjN8v/uQZ1NyJxV/OlwUPOFizoDCYLD9Q==
   dependencies:
     tslib "^2.0.0"
 
