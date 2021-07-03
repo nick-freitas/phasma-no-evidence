@@ -1,0 +1,113 @@
+{
+  "configVersion": 1,
+  "timestamp": 1625330173184,
+  "index": "/phasma-no-evidence/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/phasma-no-evidence/favicon.ico",
+        "/phasma-no-evidence/index.html",
+        "/phasma-no-evidence/main.3cf03c06781b04c75659.js",
+        "/phasma-no-evidence/main.605e66366efad3679b8e.js",
+        "/phasma-no-evidence/main.js",
+        "/phasma-no-evidence/manifest.webmanifest",
+        "/phasma-no-evidence/ngsw-worker.js",
+        "/phasma-no-evidence/polyfills.74d163d9763404b8ccef.js",
+        "/phasma-no-evidence/polyfills.js",
+        "/phasma-no-evidence/runtime.7b63b9fd40098a2e8207.js",
+        "/phasma-no-evidence/runtime.js",
+        "/phasma-no-evidence/safety-worker.js",
+        "/phasma-no-evidence/styles.css",
+        "/phasma-no-evidence/styles.f22a702a30d86a513788.css",
+        "/phasma-no-evidence/vendor.js",
+        "/phasma-no-evidence/worker-basic.min.js"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/phasma-no-evidence/assets/bootstrap.css",
+        "/phasma-no-evidence/assets/icons/android-chrome-192x192.png",
+        "/phasma-no-evidence/assets/icons/android-chrome-512x512.png",
+        "/phasma-no-evidence/assets/icons/apple-touch-icon.png",
+        "/phasma-no-evidence/assets/icons/favicon-16x16.png",
+        "/phasma-no-evidence/assets/icons/favicon-32x32.png",
+        "/phasma-no-evidence/assets/icons/favicon.ico",
+        "/phasma-no-evidence/assets/icons/icon-128x128.png",
+        "/phasma-no-evidence/assets/icons/icon-144x144.png",
+        "/phasma-no-evidence/assets/icons/icon-152x152.png",
+        "/phasma-no-evidence/assets/icons/icon-192x192.png",
+        "/phasma-no-evidence/assets/icons/icon-384x384.png",
+        "/phasma-no-evidence/assets/icons/icon-512x512.png",
+        "/phasma-no-evidence/assets/icons/icon-72x72.png",
+        "/phasma-no-evidence/assets/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/phasma-no-evidence/assets/bootstrap.css": "472ff67b4ee6a58307efe132a5d35af0992139a1",
+    "/phasma-no-evidence/assets/icons/android-chrome-192x192.png": "ab11cc974ceb3aa277fc7abcb13705fdb2dd4470",
+    "/phasma-no-evidence/assets/icons/android-chrome-512x512.png": "05f7530e0049430d55679521e069c7755bfd81b8",
+    "/phasma-no-evidence/assets/icons/apple-touch-icon.png": "e4fb3330491f4a7c962377a1d482866f45bd9c9c",
+    "/phasma-no-evidence/assets/icons/favicon-16x16.png": "e051575c8c986a4efbc59fbf5cebb09171fbeb35",
+    "/phasma-no-evidence/assets/icons/favicon-32x32.png": "7224c9091ecb4e0d3d5e5ee47d57fd47838ac819",
+    "/phasma-no-evidence/assets/icons/favicon.ico": "099fcd1d2a64b696e2bc1d2e25caf567bd999500",
+    "/phasma-no-evidence/assets/icons/icon-128x128.png": "05f7530e0049430d55679521e069c7755bfd81b8",
+    "/phasma-no-evidence/assets/icons/icon-144x144.png": "05f7530e0049430d55679521e069c7755bfd81b8",
+    "/phasma-no-evidence/assets/icons/icon-152x152.png": "05f7530e0049430d55679521e069c7755bfd81b8",
+    "/phasma-no-evidence/assets/icons/icon-192x192.png": "05f7530e0049430d55679521e069c7755bfd81b8",
+    "/phasma-no-evidence/assets/icons/icon-384x384.png": "05f7530e0049430d55679521e069c7755bfd81b8",
+    "/phasma-no-evidence/assets/icons/icon-512x512.png": "05f7530e0049430d55679521e069c7755bfd81b8",
+    "/phasma-no-evidence/assets/icons/icon-72x72.png": "7224c9091ecb4e0d3d5e5ee47d57fd47838ac819",
+    "/phasma-no-evidence/assets/icons/icon-96x96.png": "05f7530e0049430d55679521e069c7755bfd81b8",
+    "/phasma-no-evidence/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "/phasma-no-evidence/index.html": "0cc5fa7c806671f35018cf38ebd3df3f822cba86",
+    "/phasma-no-evidence/main.3cf03c06781b04c75659.js": "0c3ac6a54a95891399888dceb27d0cc3c803ea5a",
+    "/phasma-no-evidence/main.605e66366efad3679b8e.js": "58e18b0bd6266fe5f13fd4f8279884b7e89dc1dc",
+    "/phasma-no-evidence/main.js": "01ff34eff2dde9e2147d97c2418c6286ee6070fa",
+    "/phasma-no-evidence/manifest.webmanifest": "e569e0f7c85f54728882bd79afc18daf80d5ad41",
+    "/phasma-no-evidence/ngsw-worker.js": "b44316be1c1338e9e8bd30ee40946085916c58e4",
+    "/phasma-no-evidence/polyfills.74d163d9763404b8ccef.js": "763cd3b34dfa4600ebb9d9588ec7116988e98920",
+    "/phasma-no-evidence/polyfills.js": "420476b4c900cd1b4accff18672234c72108d510",
+    "/phasma-no-evidence/runtime.7b63b9fd40098a2e8207.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "/phasma-no-evidence/runtime.js": "154c277c076cfc8ee335df5d9349395c6bf58db5",
+    "/phasma-no-evidence/safety-worker.js": "f532926317210be6e2679d21748dc44a35389807",
+    "/phasma-no-evidence/styles.css": "1afd5e00533fafd79f95f233db1322c94b0ea64b",
+    "/phasma-no-evidence/styles.f22a702a30d86a513788.css": "6926fb60b83261a7d8f058352f167fb35d4a5219",
+    "/phasma-no-evidence/vendor.js": "3a4b276cf0092b8c886fe4c0da42062135d22196",
+    "/phasma-no-evidence/worker-basic.min.js": "f532926317210be6e2679d21748dc44a35389807"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
